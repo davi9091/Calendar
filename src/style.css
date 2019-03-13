@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+#main-block {
+    display: grid;
+    grid-template-rows: 60px 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    grid-template-areas:
+        "month month"
+        "location calendar"
+        "organizer organizer";
+    height: 100vh;
+}
+#month-selector {
+    background: black;
+    grid-area: month;
+}
+
+#location-search {
+    background: blue;
+    grid-area: location;
+
+}
+
+#calendar-main {
+    background: red;
+    grid-area: calendar;
+}
+
+#organizer-main {
+    background: yellow;
+    grid-area: organizer;
+}
+
+td {
+    height: 20px;
+    width: 30px;
+    border: 1px solid black;
+    padding: 0;
+}
