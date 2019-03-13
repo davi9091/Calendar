@@ -1,3 +1,5 @@
+'use strict';
+
 class Calendar {
   constructor() {
     this.date = new Date();
@@ -39,4 +41,22 @@ class Calendar {
       }
     };
   }
+
+  getMonthName(month) {
+    return this.monthNames[month];
+  }
+
+  createMonthTableHead() {
+    let thead = Calendar.createNewElement('thead', 'calendar-header');
+    let tr = Calendar.createNewElement('thead', 'calendar-row');
+
+    for (var i in this.daysShort) {
+      tr.innerHTML += '<th>' + this.daysShort[i] + '</th>';
+    }
+
+    thead.appendChild(tr);
+    return thead;
+  }
+
+
 }
