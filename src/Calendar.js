@@ -43,7 +43,7 @@ class Calendar {
       "October",
       "November",
       "December"
-    ]
+    ];
 
     return monthNames[month];
   }
@@ -114,7 +114,6 @@ class Calendar {
 
 let calendar = new Calendar();
 calendar.renderCalendar('calendar-main');
-console.log('hello1');
 
 const monthNode = document.getElementById('month-text');
 const yearNode = document.getElementById('year-text');
@@ -131,7 +130,6 @@ function changeMonth(direction) {
   while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
 
   selectedMonth += direction;
-  console.log(selectedMonth);
 
   if (selectedMonth === 12) {
     selectedMonth = 0;

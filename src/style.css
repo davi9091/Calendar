@@ -36,8 +36,8 @@ body {
 td,th {
     box-sizing: border-box;
     text-align: left;
-    height: 50px;
-    width: 65px;
+    height: 42px;
+    width: 77px;
     border: 1px solid black;
     padding-left: 10px;
 }
