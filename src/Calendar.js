@@ -6,20 +6,6 @@ class Calendar {
     this.currentYear = this.date.getFullYear();
     this.currentMonth = this.date.getMonth();
     this.daysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    this.monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
   }
 
   static createNewElement(element, className) {
@@ -43,8 +29,23 @@ class Calendar {
     };
   }
 
-  getMonthName(month) {
-    return this.monthNames[month];
+  static getMonthName(month) {
+    let monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+
+    return monthNames[month];
   }
 
   createMonthTableHead() {
@@ -63,8 +64,6 @@ class Calendar {
     var day = 1;
     var dayCount = monthData.monthDaysCount();
 
-    console.log(dayCount);
-
     while (day <= dayCount) {
       let weekRow = document.createElement('tr');
 
@@ -77,8 +76,6 @@ class Calendar {
       }
       tbody.appendChild(weekRow);
     }
-
-    console.log('while exited!');
   }
 
   createMonthTableBody(monthData) {
@@ -116,5 +113,36 @@ class Calendar {
 }
 
 let calendar = new Calendar();
-calendar.renderCalendar('calendar-main',undefined,undefined);
+calendar.renderCalendar('calendar-main');
 console.log('hello1');
+
+const monthNode = document.getElementById('month-text');
+const yearNode = document.getElementById('year-text');
+
+
+var selectedMonth = calendar.currentMonth;
+var selectedYear = calendar.currentYear;
+
+monthNode.innerHTML = Calendar.getMonthName(selectedMonth);
+yearNode.innerHTML = selectedYear;
+
+function changeMonth(direction) {
+  let parent = document.getElementById('calendar-main');
+  while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
+
+  selectedMonth += direction;
+  console.log(selectedMonth);
+
+  if (selectedMonth === 12) {
+    selectedMonth = 0;
+    selectedYear += direction;
+    calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
+  } else if(selectedMonth < 0) {
+    selectedMonth = 11;
+    selectedYear += direction;
+    calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
+  } else calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
+
+  monthNode.innerHTML = Calendar.getMonthName(selectedMonth);
+  yearNode.innerHTML = selectedYear;
+}

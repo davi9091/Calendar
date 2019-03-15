@@ -3,6 +3,7 @@ body {
 }
 
 #main-block {
+    background: beige;
     display: grid;
     grid-template-rows: 60px 1fr 1fr;
     grid-template-columns: 1fr 2fr;
@@ -13,34 +14,64 @@ body {
         "organizer organizer";
     height: 100vh;
 }
-#month-selector {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    color: white;
-    background: black;
-    grid-area: month;
+
+.calendar-table {
+    background: white;
 }
 
+
 #location-search {
-    background: blue;
     grid-area: location;
 
 }
 
 #calendar-main {
-    background: red;
     grid-area: calendar;
 }
 
 #organizer-main {
-    background: yellow;
     grid-area: organizer;
 }
 
-td {
+td,th {
+    box-sizing: border-box;
+    text-align: left;
     height: 50px;
     width: 65px;
     border: 1px solid black;
-    padding: 0;
+    padding-left: 10px;
+}
+
+th {
+    height: 65px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#month-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+    grid-area: month;
+}
+
+#month-text {
+    vertical-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 10px 0 20px;
+}
+
+#year-text {
+    vertical-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin-right: 20px;
+}
+
+.arrow {
+    display: block;
 }
