@@ -3,7 +3,8 @@ body {
 }
 
 #main-block {
-    background: beige;
+    background: #efefef;
+
     display: grid;
     grid-template-rows: 60px 1fr 1fr;
     grid-template-columns: 1fr 2fr;
@@ -12,6 +13,7 @@ body {
         "month month"
         "location calendar"
         "organizer organizer";
+
     height: 100vh;
 }
 
@@ -23,6 +25,14 @@ body {
 #location-search {
     grid-area: location;
 
+}
+
+#location-input {
+    display: block;
+    margin: auto;
+    width: 250px;
+    height: 35px;
+    font-size: 25px;
 }
 
 #calendar-main {
@@ -38,8 +48,15 @@ td,th {
     text-align: left;
     height: 42px;
     width: 77px;
-    border: 1px solid black;
+    border: 1px solid darkgrey;
     padding-left: 10px;
+}
+
+.today {
+    position: relative;
+    box-sizing: border-box;
+    border: 2px solid darkred;
+    z-index: 1;
 }
 
 th {
@@ -51,11 +68,16 @@ table {
 }
 
 #month-selector {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     color: black;
     grid-area: month;
+}
+
+.other-month {
+    background: lightgrey;
 }
 
 #month-text {

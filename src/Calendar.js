@@ -61,18 +61,22 @@ class Calendar {
   }
 
   distributeDays(monthData, tbody) {
-    var day = 1;
-    var dayCount = monthData.monthDaysCount();
+    let day = 1;
+    let dayCount = monthData.monthDaysCount();
 
     while (day <= dayCount) {
       let weekRow = document.createElement('tr');
 
       for (var i = 0; i < 7; ++i) {
         if ((monthData.weekDay(day) === i) && (day <= dayCount)) {
-          weekRow.innerHTML += '<td>' + day + '</td>';
+          if ((this.date.getDate() === day) &&
+            (this.startMonth === this.currentMonth) &&
+            (this.startMonthsYear === this.currentYear)) weekRow.innerHTML +=
+            '<td class="today">' + day + '</td>';
+          else weekRow.innerHTML += '<td>' + day + '</td>';
           ++day;
         }
-        else weekRow.innerHTML += '<td></td>';
+        else weekRow.innerHTML += '<td class="other-month"></td>';
       }
       tbody.appendChild(weekRow);
     }
@@ -112,6 +116,7 @@ class Calendar {
   }
 }
 
+
 let calendar = new Calendar();
 calendar.renderCalendar('calendar-main');
 
@@ -134,13 +139,17 @@ function changeMonth(direction) {
   if (selectedMonth === 12) {
     selectedMonth = 0;
     selectedYear += direction;
+
     calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
+
   } else if(selectedMonth < 0) {
     selectedMonth = 11;
     selectedYear += direction;
+
     calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
+
   } else calendar.renderCalendar('calendar-main', selectedMonth, selectedYear);
 
   monthNode.innerHTML = Calendar.getMonthName(selectedMonth);
   yearNode.innerHTML = selectedYear;
-}
+};
